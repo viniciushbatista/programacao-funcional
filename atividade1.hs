@@ -4,6 +4,7 @@ import Data.Char
 alfabeto :: String
 alfabeto = ['a'..'z']
 
+--         abcdefghijklmnopqrstuvwxyz
 --chave = "ZYNGWQAMXPKVULCEFRIBSJDOTH"
 
 substituir :: Char -> [(Char, Char)] -> Char
@@ -13,20 +14,20 @@ substituir c tabela =
     else c
 
 --criptografa
-monoAlphaCipherE :: String -> String -> String
+monoAlphaCipherE :: [Char] -> String -> String
 monoAlphaCipherE chave texto =
   [ if c `elem` alfabeto then substituir c tabela else c | c <- normalizeTexto texto ]
   where
     tabela = zip alfabeto chave
 
---descripografa
-monoAlphaCipherD :: String -> String -> String
+--descriptografa
+monoAlphaCipherD :: [Char] -> String -> String
 monoAlphaCipherD chave texto =
   [ if c `elem` chave then substituir c tabela else c | c <- texto ]
   where
     tabela = zip chave alfabeto 
 
---parte de normalizaçao do texto
+--parte de normalização do texto
 normalizeTexto :: String -> String
 normalizeTexto xs = tiraAcentoS (paraMinusculo xs)
 
